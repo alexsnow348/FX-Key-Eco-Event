@@ -1,8 +1,7 @@
 import requests as rq
 import pandas as pd
 import json
-from datetime import datetime
-import time
+from datetime import datetime, timezone
 
 
 class API(object):
@@ -16,13 +15,15 @@ class API(object):
         self.data_df = pd.DataFrame(data)
         self.data_df = self.data_df.dropna(how='any', axis=0)
 
+    def utc_to_local(self, utc_dt):
+        utc_dt = datetime.strptime(utc_dt, "%Y-%m-%d %H:%M:%S")
+        local = utc_dt.replace(tzinfo=timezone.utc).astimezone(tz=None)
+        return local.strftime("%Y-%m-%d %H:%M:%S")
+
     def processData(self, date):
 
         self.data_df['timestamp_af'] = self.data_df['timestamp'].apply(
-            lambda x: int(time.mktime(time.strptime(x, '%Y-%m-%d %H:%M:%S')))
-            - time.timezone)
-        self.data_df['timestamp_af'] = self.data_df['timestamp_af'].apply(
-            lambda x: time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(x)))
+            lambda x: self.utc_to_local(x))
         self.data_df['date'] = self.data_df['timestamp_af'].apply(
             lambda x: x[:10])
         todaydata = self.data_df.loc[self.data_df['date'] == date]
