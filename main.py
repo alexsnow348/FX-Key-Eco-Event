@@ -9,7 +9,8 @@ Todo:
     * Get level 3 impactful data (done)
     * Change timezone to locals (done)
     * Get list of time and change it into 3 minutes before timestamp (done)
-    * Send twillo message to phone when current time is in the time list.
+    * Send twillo message to phone when current time is in the time list. (done)
+    * Make one API call per day only
 
 """
 
@@ -108,7 +109,6 @@ if __name__ == '__main__':
     print(date)
     date_time = date_time - timedelta(minutes=3)
     date_time = date_time.strftime("%s")
-    print(date_time)
     sample_call = API(url)
     sample_call.processData(date, major)
     sample_call.create_msg(date_time)
