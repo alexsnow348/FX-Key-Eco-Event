@@ -1,0 +1,3 @@
+## FX-Key-Eco-Event
+Calendar notification engine for keys economic event, built with Web scraping from investment.org
+Mainly creadited to : https://github.com/alexsnow348/economic-calendar-api
