@@ -103,7 +103,7 @@ class API(object):
 
 if __name__ == '__main__':
     major = ['EUR', 'USD', 'JPY', 'GBP', 'AUD', 'CHF', 'NZD', 'CAD']
-    url = 'https://eco-event.000webhostapp.com/'
+    url = 'https://eco-events-api.000webhostapp.com/'
     date_time = datetime.now()
     date = date_time.strftime("%Y-%m-%d")
     print(date)
