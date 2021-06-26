@@ -57,7 +57,7 @@ class API(object):
         client = Client(account_sid, auth_token)
 
         message = client.messages.create(
-            to="+601128174379",
+            to="+601129174379",
             from_="+17067395816",
             body=msg)
         return message.sid
